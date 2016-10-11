@@ -85,6 +85,6 @@ public class SpookyDriveTest extends OpMode {
         cHori = gamepad1.left_stick_x;
         dHori = gamepad1.left_stick_x;
         //
-        robot.setDrive(-aVert - aHori, bVert - bHori, -cVert + cHori, dVert + dHori);
+        robot.setDrive(-aVert - aHori, bVert - bHori, cVert + cHori, -dVert + dHori);
     }
 }
