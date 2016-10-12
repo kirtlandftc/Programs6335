@@ -81,6 +81,6 @@ public class SpookyDriveTest extends OpMode {
         cPow = vert + hori;
         dPow = -vert + hori;
         //
-        robot.setDrive(aPow, bPow, cPow, dPow);
+        robot.setMotors(aPow, bPow, cPow, dPow);
     }
 }
