@@ -63,6 +63,8 @@ public class SpookyDriveTest extends OpMode {
     double vert;
     double hori;
     //
+    double rotate;
+    //
     double aPow;
     double bPow;
     double cPow;
@@ -75,12 +77,18 @@ public class SpookyDriveTest extends OpMode {
 
         vert = gamepad1.left_stick_y; //Assuming left stick forward: y = 1
         hori = gamepad1.left_stick_x; //Assuming left stick right: x = 1
+
+        rotate = -1*gamepad1.right_stick_x; //Assuming left stick right: x = 1;
         //
         aPow = -vert - hori;
         bPow = vert - hori;
         cPow = vert + hori;
         dPow = -vert + hori;
-        //
-        robot.setMotors(aPow, bPow, cPow, dPow);
+        //Only run translation and rotation separately
+        if (rotate == 0) {
+            robot.setMotors(aPow, bPow, cPow, dPow);
+        } else {
+            robot.setMotors(rotate);
+        }
     }
 }
