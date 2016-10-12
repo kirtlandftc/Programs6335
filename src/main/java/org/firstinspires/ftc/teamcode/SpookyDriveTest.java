@@ -60,31 +60,26 @@ public class SpookyDriveTest extends OpMode {
         runtime.reset();
     }
 
-    double aVert;
-    double bVert;
-    double cVert;
-    double dVert;
-    //
-    double aHori;
-    double bHori;
-    double cHori;
-    double dHori;
+    double vert;
+    double hori;
+    double aPow;
+    double bPow;
+    double cPow;
+    double dPow;
 
 
     @Override
     public void loop() {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
 
-        aVert = -gamepad1.left_stick_y; //Assuming left stick forward: y = 1
-        bVert = gamepad1.left_stick_y;
-        cVert = gamepad1.left_stick_y;
-        dVert = -gamepad1.left_stick_y;
+        vert = gamepad1.left_stick_y; //Assuming left stick forward: y = 1
+        hori = gamepad1.left_stick_x; //Assuming left stick right: x = 1
         //
-        aHori = -gamepad1.left_stick_x; //Assuming left stick right: x = 1
-        bHori = -gamepad1.left_stick_x;
-        cHori = gamepad1.left_stick_x;
-        dHori = gamepad1.left_stick_x;
+        aPow = -vert - hori;
+        bPow = vert - hori;
+        cPow = vert + hori;
+        dPow = -vert + hori;
         //
-        robot.setDrive(-aVert - aHori, bVert - bHori, cVert + cHori, -dVert + dHori);
+        robot.setDrive(aPow, bPow, cPow, dPow);
     }
 }
