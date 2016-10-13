@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
 public class HoloDir {
-    public int a;
-    public int b;
-    public int c;
-    public int d;
+    public double a;
+    public double b;
+    public double c;
+    public double d;
+
 
     public HoloDir(int a, int b, int c, int d)
     {
@@ -14,6 +15,7 @@ public class HoloDir {
         this.d = d;
     }
 
+    //Map for motor values
     public static HoloDir FORWARD = new HoloDir(-1, 1, 1, -1);
     public static HoloDir BACKWARD = new HoloDir(1, -1, -1, 1);
     public static HoloDir LEFT = new HoloDir(1, 1, -1, -1);

@@ -56,14 +56,16 @@ public class HardwareSpooky
         dMotor.setPower(dPow);
     }
 
-    public void setDrive(HoloDir dir, double power)
-    {
-        setDrive(dir.a*power, dir.b*power, dir.c*power, dir.d*power);
+    public void setAllDrive(double pow) {
+        aMotor.setPower(pow);
+        bMotor.setPower(pow);
+        cMotor.setPower(pow);
+        dMotor.setPower(pow);
     }
 
-    public void setAllDrive(double power)
+    public void setDrive(HoloDir dir, double power)
     {
-        setDrive(power, power, power, power);
+        setDrive(dir.a, dir.b, dir.c, dir.d);
     }
 
     public void stop()
