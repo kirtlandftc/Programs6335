@@ -78,15 +78,13 @@ public class SpookyDriveTest extends OpMode {
         vert = -gamepad1.left_stick_y; //Assuming left stick forward: y = -1
         hori = gamepad1.left_stick_x; //Assuming left stick right: x = 1
 
-        rotate = -1*gamepad1.right_stick_x; //Assuming left stick right: x = 1;
-        //
         /*
+        rotate = -gamepad1.right_stick_x; //Assuming left stick right: x = 1
         if (rotate == 0) {
-            robot.setMotors(aPow, bPow, cPow, dPow);
+            robot.setDrive(aPow, bPow, cPow, dPow);
         } else {
-            robot.setMotors(rotate);
+            robot.setAllDrive(rotate);
         }
-        */
         if(gamepad1.left_bumper)
         {
             robot.setAllDrive(1);
@@ -95,13 +93,14 @@ public class SpookyDriveTest extends OpMode {
         {
             robot.setAllDrive(-1);
         }
-        else {
+        */
+        //else {
             aPow = -vert - hori;
             bPow = vert - hori;
             cPow = vert + hori;
             dPow = -vert + hori;
             robot.setDrive(aPow, bPow, cPow, dPow);
-        }
+        //}
 
     }
 }
