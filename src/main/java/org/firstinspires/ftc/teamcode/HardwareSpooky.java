@@ -23,9 +23,9 @@ public class HardwareSpooky
     HardwareMap hwMap = null;
     private ElapsedTime period = new ElapsedTime();
 
-    public HardwareSpooky(DcMotor.RunMode rM)
+    public HardwareSpooky(DcMotor.RunMode runMode)
     {
-        runMode = rM;
+        this.runMode = runMode;
     }
 
     public void init(HardwareMap ahwMap)

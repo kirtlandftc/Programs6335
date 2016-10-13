@@ -66,7 +66,7 @@ public class SpookyAutoTest extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Status", "State ID: " + stateID);
+        telemetry.addData("Status", "State: " + stateID);
 
         switch(stateID)
         {

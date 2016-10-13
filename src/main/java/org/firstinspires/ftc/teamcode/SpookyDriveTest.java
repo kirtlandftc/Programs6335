@@ -73,14 +73,24 @@ public class SpookyDriveTest extends OpMode {
     public void loop() {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
 
-        vert = gamepad1.left_stick_y; //Assuming left stick forward: y = 1
+        vert = -gamepad1.left_stick_y; //Assuming left stick forward: y = -1
         hori = gamepad1.left_stick_x; //Assuming left stick right: x = 1
         //
-        aPow = -vert - hori;
-        bPow = vert - hori;
-        cPow = vert + hori;
-        dPow = -vert + hori;
-        //
-        robot.setDrive(aPow, bPow, cPow, dPow);
+        if(gamepad1.left_bumper)
+        {
+            robot.setAllDrive(1);
+        }
+        else if(gamepad1.right_bumper)
+        {
+            robot.setAllDrive(-1);
+        }
+        else
+        {
+            aPow = -vert - hori;
+            bPow = vert - hori;
+            cPow = vert + hori;
+            dPow = -vert + hori;
+            robot.setDrive(aPow, bPow, cPow, dPow);
+        }
     }
 }

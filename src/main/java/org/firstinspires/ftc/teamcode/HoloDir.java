@@ -18,6 +18,7 @@ public class HoloDir {
     public static HoloDir BACKWARD = new HoloDir(1, -1, -1, 1);
     public static HoloDir LEFT = new HoloDir(1, 1, -1, -1);
     public static HoloDir RIGHT = new HoloDir(-1, -1, 1, 1);
+    //
     public static HoloDir FORWARD_LEFT = new HoloDir(0, 1, 0, -1);
     public static HoloDir BACKWARD_LEFT = new HoloDir(1, 0, -1, 0);
     public static HoloDir FORWARD_RIGHT = new HoloDir(-1, 0, 1, 0);
