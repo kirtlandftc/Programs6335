@@ -71,22 +71,10 @@ public class SpookyAutoTest extends OpMode {
         switch(stateID)
         {
             case 0:
-                robot.setDrive(HoloDir.RIGHT, 1);
-                if (runtime.seconds() >= 2) stateID++;
-                break;
-            case 1:
-                robot.setDrive(HoloDir.LEFT, 1);
-                if (runtime.seconds() >= 4) stateID++;
-                break;
-            case 2:
-                robot.setDrive(HoloDir.FORWARD_RIGHT, 1);
+                robot.setDrive(HoloDir.FORWARD, 1);
                 if (runtime.seconds() >= 6) stateID++;
                 break;
-            case 3:
-                robot.setDrive(HoloDir.FORWARD_LEFT, 1);
-                if (runtime.seconds() >= 8) stateID++;
-                break;
-            case 4:
+            case 1:
                 robot.stop();
                 break;
         }
