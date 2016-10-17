@@ -42,7 +42,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "SpookyAutoTest", group = "Spooky")
 public class SpookyAutoTest extends OpMode {
 
-    HardwareSpooky robot = new HardwareSpooky(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    HardwareSpooky robot = new HardwareSpooky();;
     private int stateID;
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -50,7 +50,7 @@ public class SpookyAutoTest extends OpMode {
     public void init()
     {
         robot.init(hardwareMap);
-        telemetry.addData("Status", "Initialized");
+        telemetry.addData("Initialization", "Complete");
     }
 
     @Override
@@ -60,19 +60,21 @@ public class SpookyAutoTest extends OpMode {
     @Override
     public void start() {
         runtime.reset();
+        robot.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         stateID = 0;
     }
 
     @Override
     public void loop() {
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Status", "State: " + stateID);
+        telemetry.addData("Run Time", runtime.toString());
+        telemetry.addData("State", stateID);
+        telemetry.addData("Runmodes", robot.aMotor);
 
         switch(stateID)
         {
             case 0:
-                robot.setDrive(HoloDir.FORWARD, 1);
-                if (runtime.seconds() >= 6) stateID++;
+                robot.setDrive(1, 1, 1, 1);
+                if (runtime.seconds() >= 15) stateID++;
                 break;
             case 1:
                 robot.stop();

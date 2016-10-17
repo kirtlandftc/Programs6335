@@ -18,15 +18,8 @@ public class HardwareSpooky
     public DcMotor cMotor = null;
     public DcMotor dMotor = null;
 
-    DcMotor.RunMode runMode = null;
-
     HardwareMap hwMap = null;
     private ElapsedTime period = new ElapsedTime();
-
-    public HardwareSpooky(DcMotor.RunMode runMode)
-    {
-        this.runMode = runMode;
-    }
 
     public void init(HardwareMap ahwMap)
     {
@@ -36,10 +29,10 @@ public class HardwareSpooky
         bMotor = hwMap.dcMotor.get("b_drive");
         cMotor = hwMap.dcMotor.get("c_drive");
         dMotor = hwMap.dcMotor.get("d_drive");
-        aMotor.setMode(runMode);
-        bMotor.setMode(runMode);
-        cMotor.setMode(runMode);
-        dMotor.setMode(runMode);
+        aMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        bMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        cMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        dMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         aMotor.setDirection(DcMotor.Direction.FORWARD);
         bMotor.setDirection(DcMotor.Direction.FORWARD);
         cMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -65,13 +58,22 @@ public class HardwareSpooky
 
     public void setDrive(HoloDir dir, double power)
     {
-        setDrive(dir.a, dir.b, dir.c, dir.d);
+        setDrive(dir.a * power, dir.b * power, dir.c * power, dir.d * power);
+    }
+
+    public void setMode(DcMotor.RunMode runMode)
+    {
+        aMotor.setMode(runMode);
+        bMotor.setMode(runMode);
+        cMotor.setMode(runMode);
+        dMotor.setMode(runMode);
     }
 
     public void stop()
     {
         setAllDrive(0);
     }
+
     /***
      *
      * waitForTick implements a periodic delay. However, this acts like a metronome with a regular

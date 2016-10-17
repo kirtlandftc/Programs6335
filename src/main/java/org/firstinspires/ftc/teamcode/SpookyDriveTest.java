@@ -42,14 +42,14 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name = "SpookyDriveTest", group = "Spooky")
 public class SpookyDriveTest extends OpMode {
 
-    HardwareSpooky robot = new HardwareSpooky(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    HardwareSpooky robot = new HardwareSpooky();;
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void init()
     {
         robot.init(hardwareMap);
-        telemetry.addData("Status", "Initialized");
+        telemetry.addData("Initialization", "Complete");
     }
 
     @Override
@@ -59,12 +59,13 @@ public class SpookyDriveTest extends OpMode {
     @Override
     public void start() {
         runtime.reset();
+        robot.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     double vert;
     double hori;
     //
-    double rotate;
+    double rotate = 0;
     //
     double aPow;
     double bPow;
@@ -83,34 +84,42 @@ public class SpookyDriveTest extends OpMode {
 
         if (gamepad1.right_trigger > 0) {
             scale = 1.0;
-            telemetry.addData("Speed:", "Full");
+            telemetry.addData("Speed", "Full");
         } else if (gamepad1.left_trigger > 0) {
             scale = 0.25;
-            telemetry.addData("Speed:", "Quarter");
+            telemetry.addData("Speed", "Quarter");
         } else {
             scale = 0.75;
-            telemetry.addData("Speed:", "Normal");
+            telemetry.addData("Speed", "Normal");
         }
 
         if(gamepad1.right_bumper) //RIGHT ROTATION
         {
-            robot.setAllDrive(-scale);
+            rotate = -scale;
         }
         else if(gamepad1.left_bumper) //LEFT ROTATION
         {
-            robot.setAllDrive(scale);
+            rotate = scale;
+        }
+        else
+        {
+            rotate = -gamepad1.right_stick_x;
+        }
+
+        if (rotate != 0) {
+            robot.setAllDrive(rotate);
         }
         else if (gamepad1.dpad_up) { //D-PAD MOVEMENTS
-            robot.setDrive(HoloDir.FORWARD, scale);
+            robot.setDrive(HoloDir.FORWARD, 0.2);
         }
         else if (gamepad1.dpad_down) {
-            robot.setDrive(HoloDir.BACKWARD, scale);
+            robot.setDrive(HoloDir.BACKWARD, 0.2);
         }
         else if (gamepad1.dpad_left) {
-            robot.setDrive(HoloDir.LEFT, scale);
+            robot.setDrive(HoloDir.LEFT, 0.2);
         }
         else if (gamepad1.dpad_right) {
-            robot.setDrive(HoloDir.RIGHT, scale);
+            robot.setDrive(HoloDir.RIGHT, 0.2);
         }
         else
         {
