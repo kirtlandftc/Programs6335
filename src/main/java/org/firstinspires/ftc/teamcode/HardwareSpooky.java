@@ -19,7 +19,12 @@ public class HardwareSpooky
     public DcMotor dMotor = null;
 
     HardwareMap hwMap = null;
-    private ElapsedTime period = new ElapsedTime();
+    private DcMotor.RunMode runMode = null;
+
+    public HardwareSpooky(DcMotor.RunMode rMode)
+    {
+        runMode = rMode;
+    }
 
     public void init(HardwareMap ahwMap)
     {
@@ -33,16 +38,19 @@ public class HardwareSpooky
         bMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         cMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        aMotor.setMode(runMode);
+        bMotor.setMode(runMode);
+        cMotor.setMode(runMode);
+        dMotor.setMode(runMode);
         aMotor.setDirection(DcMotor.Direction.FORWARD);
         bMotor.setDirection(DcMotor.Direction.FORWARD);
         cMotor.setDirection(DcMotor.Direction.FORWARD);
         dMotor.setDirection(DcMotor.Direction.FORWARD);
 
-        setAllDrive(0);
+        stop();
     }
 
-    public void setDrive(double aPow, double bPow, double cPow, double dPow)
-    {
+    public void setDrive(double aPow, double bPow, double cPow, double dPow) {
         aMotor.setPower(aPow);
         bMotor.setPower(bPow);
         cMotor.setPower(cPow);
@@ -61,8 +69,7 @@ public class HardwareSpooky
         setDrive(dir.a * power, dir.b * power, dir.c * power, dir.d * power);
     }
 
-    public void setMode(DcMotor.RunMode runMode)
-    {
+    public void setMode(DcMotor.RunMode runMode) {
         aMotor.setMode(runMode);
         bMotor.setMode(runMode);
         cMotor.setMode(runMode);
@@ -72,28 +79,6 @@ public class HardwareSpooky
     public void stop()
     {
         setAllDrive(0);
-    }
-
-    /***
-     *
-     * waitForTick implements a periodic delay. However, this acts like a metronome with a regular
-     * periodic tick.  This is used to compensate for varying processing times for each cycle.
-     * The function looks at the elapsed cycle time, and sleeps for the remaining time interval.
-     *
-     * @param periodMs  Length of wait cycle in mSec.
-     * @throws InterruptedException
-     */
-    public void waitForTick(long periodMs) throws InterruptedException
-    {
-
-        long  remaining = periodMs - (long)period.milliseconds();
-
-        // sleep for the remaining portion of the regular cycle period.
-        if (remaining > 0)
-            Thread.sleep(remaining);
-
-        // Reset the cycle clock for the next pass.
-        period.reset();
     }
 }
 
