@@ -42,7 +42,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name = "SpookyDriveTest", group = "Spooky")
 public class SpookyDriveTest extends OpMode {
 
-    HardwareSpooky robot = new HardwareSpooky();;
+    HardwareSpooky robot = new HardwareSpooky(DcMotor.RunMode.RUN_USING_ENCODER);;
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override

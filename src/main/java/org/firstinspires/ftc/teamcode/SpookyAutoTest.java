@@ -42,7 +42,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "SpookyAutoTest", group = "Spooky")
 public class SpookyAutoTest extends OpMode {
 
-    HardwareSpooky robot = new HardwareSpooky();;
+    HardwareSpooky robot = new HardwareSpooky(DcMotor.RunMode.RUN_USING_ENCODER);;
     private int stateID;
     private ElapsedTime runtime = new ElapsedTime();
 
