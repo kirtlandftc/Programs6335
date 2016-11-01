@@ -34,6 +34,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -60,15 +61,15 @@ public class SpookyAutoTest extends OpMode {
     @Override
     public void start() {
         runtime.reset();
-        robot.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         stateID = 0;
     }
 
     @Override
     public void loop() {
         telemetry.addData("Run Time", runtime.toString());
-        telemetry.addData("State", stateID);
-        telemetry.addData("Runmodes", robot.aMotor);
+        //telemetry.addData("State", stateID);
+        telemetry.addData("Run Mode" , robot.aMotor.getMode());
+        telemetry.addData("Distances", robot.aMotor.getCurrentPosition() + " " + robot.bMotor.getCurrentPosition() + " " + robot.cMotor.getCurrentPosition() + " " + robot.dMotor.getCurrentPosition());
 
         switch(stateID)
         {

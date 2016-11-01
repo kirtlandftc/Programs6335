@@ -17,13 +17,15 @@ public class HardwareSpooky
     public DcMotor bMotor = null;
     public DcMotor cMotor = null;
     public DcMotor dMotor = null;
+    //
+    public DcMotor catapult = null;
 
     HardwareMap hwMap = null;
-    private DcMotor.RunMode runMode = null;
+    DcMotor.RunMode selectedMode = null;
 
-    public HardwareSpooky(DcMotor.RunMode rMode)
+    public HardwareSpooky(DcMotor.RunMode mode)
     {
-        runMode = rMode;
+        selectedMode = mode;
     }
 
     public void init(HardwareMap ahwMap)
@@ -34,14 +36,15 @@ public class HardwareSpooky
         bMotor = hwMap.dcMotor.get("b_drive");
         cMotor = hwMap.dcMotor.get("c_drive");
         dMotor = hwMap.dcMotor.get("d_drive");
+        catapult = hwMap.dcMotor.get("catapult");
         aMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         cMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        aMotor.setMode(runMode);
-        bMotor.setMode(runMode);
-        cMotor.setMode(runMode);
-        dMotor.setMode(runMode);
+        aMotor.setMode(selectedMode);
+        bMotor.setMode(selectedMode);
+        cMotor.setMode(selectedMode);
+        dMotor.setMode(selectedMode);
         aMotor.setDirection(DcMotor.Direction.FORWARD);
         bMotor.setDirection(DcMotor.Direction.FORWARD);
         cMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -67,13 +70,6 @@ public class HardwareSpooky
     public void setDrive(HoloDir dir, double power)
     {
         setDrive(dir.a * power, dir.b * power, dir.c * power, dir.d * power);
-    }
-
-    public void setMode(DcMotor.RunMode runMode) {
-        aMotor.setMode(runMode);
-        bMotor.setMode(runMode);
-        cMotor.setMode(runMode);
-        dMotor.setMode(runMode);
     }
 
     public void stop()

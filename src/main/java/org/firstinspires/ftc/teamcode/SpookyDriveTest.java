@@ -42,7 +42,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name = "SpookyDriveTest", group = "Spooky")
 public class SpookyDriveTest extends OpMode {
 
-    HardwareSpooky robot = new HardwareSpooky(DcMotor.RunMode.RUN_USING_ENCODER);;
+    HardwareSpooky robot = new HardwareSpooky(DcMotor.RunMode.RUN_USING_ENCODER);
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -59,7 +59,6 @@ public class SpookyDriveTest extends OpMode {
     @Override
     public void start() {
         runtime.reset();
-        robot.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     double vert;
@@ -79,8 +78,21 @@ public class SpookyDriveTest extends OpMode {
     public void loop() {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
 
-        vert = -gamepad1.left_stick_y; //Assuming left stick forward: y = -1
-        hori = gamepad1.left_stick_x; //Assuming left stick right: x = 1
+        //Get vertical and horizontal thrust from driver
+        vert = -gamepad1.left_stick_y;
+        hori = gamepad1.left_stick_x;
+
+        if(gamepad2.right_trigger > 0) {
+            robot.catapult.setPower(1);
+        }
+        else if(gamepad2.left_trigger > 0)
+        {
+            robot.catapult.setPower(-1);
+        }
+        else
+        {
+            robot.catapult.setPower(0);
+        }
 
         if (gamepad1.right_trigger > 0) {
             scale = 1.0;
