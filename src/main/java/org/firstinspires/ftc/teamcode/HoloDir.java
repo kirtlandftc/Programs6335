@@ -15,14 +15,14 @@ public class HoloDir {
         this.d = d;
     }
 
-    //Map for motor values
-    public static HoloDir FORWARD = new HoloDir(-1, 1, 1, -1);
-    public static HoloDir BACKWARD = new HoloDir(1, -1, -1, 1);
-    public static HoloDir LEFT = new HoloDir(1, 1, -1, -1);
-    public static HoloDir RIGHT = new HoloDir(-1, -1, 1, 1);
+    //Constant directional values
+    public static final HoloDir FORWARD = new HoloDir(-1, 1, 1, -1);
+    public static final HoloDir BACKWARD = new HoloDir(1, -1, -1, 1);
+    public static final HoloDir LEFT = new HoloDir(1, 1, -1, -1);
+    public static final HoloDir RIGHT = new HoloDir(-1, -1, 1, 1);
     //
-    public static HoloDir FORWARD_LEFT = new HoloDir(0, 1, 0, -1);
-    public static HoloDir BACKWARD_LEFT = new HoloDir(1, 0, -1, 0);
-    public static HoloDir FORWARD_RIGHT = new HoloDir(-1, 0, 1, 0);
-    public static HoloDir BACKWARD_RIGHT = new HoloDir(0, -1, 0, 1);
+    public static final HoloDir FORWARD_LEFT = new HoloDir(0, 1, 0, -1);
+    public static final HoloDir BACKWARD_LEFT = new HoloDir(1, 0, -1, 0);
+    public static final HoloDir FORWARD_RIGHT = new HoloDir(-1, 0, 1, 0);
+    public static final HoloDir BACKWARD_RIGHT = new HoloDir(0, -1, 0, 1);
 }

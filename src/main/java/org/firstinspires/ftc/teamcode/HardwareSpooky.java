@@ -36,7 +36,7 @@ public class HardwareSpooky
         bMotor = hwMap.dcMotor.get("b_drive");
         cMotor = hwMap.dcMotor.get("c_drive");
         dMotor = hwMap.dcMotor.get("d_drive");
-        catapult = hwMap.dcMotor.get("catapult");
+        //catapult = hwMap.dcMotor.get("catapult");
         aMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         cMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

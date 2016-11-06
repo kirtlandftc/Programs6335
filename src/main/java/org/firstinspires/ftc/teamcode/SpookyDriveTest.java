@@ -77,11 +77,13 @@ public class SpookyDriveTest extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
+        //robot.hwMap.deviceInterfaceModule.get("dim").setLED(0, true);
 
         //Get vertical and horizontal thrust from driver
         vert = -gamepad1.left_stick_y;
         hori = gamepad1.left_stick_x;
 
+        /*
         if(gamepad2.right_trigger > 0) {
             robot.catapult.setPower(1);
         }
@@ -93,6 +95,7 @@ public class SpookyDriveTest extends OpMode {
         {
             robot.catapult.setPower(0);
         }
+        */
 
         if (gamepad1.right_trigger > 0) {
             scale = 1.0;
