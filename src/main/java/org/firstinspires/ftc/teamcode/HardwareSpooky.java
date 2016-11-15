@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -19,6 +20,7 @@ public class HardwareSpooky
     public DcMotor dMotor = null;
     //
     public DcMotor catapult = null;
+    public DcMotor ballBelt = null;
 
     HardwareMap hwMap = null;
     DcMotor.RunMode selectedMode = null;
@@ -36,19 +38,27 @@ public class HardwareSpooky
         bMotor = hwMap.dcMotor.get("b_drive");
         cMotor = hwMap.dcMotor.get("c_drive");
         dMotor = hwMap.dcMotor.get("d_drive");
-        //catapult = hwMap.dcMotor.get("catapult");
+        catapult = hwMap.dcMotor.get("catapult");
+        ballBelt = hwMap.dcMotor.get("ball_belt");
+
         aMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         cMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         aMotor.setMode(selectedMode);
         bMotor.setMode(selectedMode);
         cMotor.setMode(selectedMode);
         dMotor.setMode(selectedMode);
+        catapult.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        ballBelt.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         aMotor.setDirection(DcMotor.Direction.FORWARD);
         bMotor.setDirection(DcMotor.Direction.FORWARD);
         cMotor.setDirection(DcMotor.Direction.FORWARD);
         dMotor.setDirection(DcMotor.Direction.FORWARD);
+        catapult.setDirection(DcMotor.Direction.FORWARD);
+        ballBelt.setDirection(DcMotor.Direction.REVERSE);
 
         stop();
     }
